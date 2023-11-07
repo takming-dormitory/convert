@@ -10,16 +10,21 @@ document.querySelector("#btn").addEventListener("click", () => {
     document.querySelector("#input").value = ""
 })
 
-// https://drive.google.com/file/d/1c5paqyh-9zZcObhS3Y5sfaHJg7ueo3h2/view?usp=sharing, https://drive.google.com/file/d/1qN9PPkxi7l7ZJ63U3WDTXefDMWw-ILht/view?usp=sharing, https://drive.google.com/file/d/1snymfaKRjAAO6KRLpTkKwUtRu3Z0mXLD/view?usp=sharing, https://drive.google.com/file/d/1xwfixoz497V6UTwn2IIUfP75Mmzi6cYX/view?usp=sharing, https://drive.google.com/file/d/1zXx6uw5tsgQz_ydX6g7ubl6_aeMN5D9l/view?usp=sharing
+// https://drive.google.com/file/d/1x05ic0MFKooC4AhwC2B0tQ0fu1oBz3KF/view?usp=drive_link or https://drive.google.com/file/d/1x05ic0MFKooC4AhwC2B0tQ0fu1oBz3KF/view?usp=sharing
 
 // 轉換字串
 const convertString = (str) => {
     let result
-    let strarr = str.split(", ")
+    let strarr = str.split("\n")
     console.log(strarr)
     for (let i = 0; i < strarr.length; i++) {
+        // strarr[i] = strarr[i].replace(
+        //     /https:\/\/drive.google.com\/file\/d\/(.*)\/view\?usp=sharing/g,
+        //     "https://drive.google.com/uc?export=view&id=$1"
+        // )
+        // ?usp=drive_link or ?usp=sharing 都要替換
         strarr[i] = strarr[i].replace(
-            /https:\/\/drive.google.com\/file\/d\/(.*)\/view\?usp=sharing/g,
+            /https:\/\/drive.google.com\/file\/d\/(.*)\/view\?usp=(.*)/g,
             "https://drive.google.com/uc?export=view&id=$1"
         )
         result = strarr.join("\n")
